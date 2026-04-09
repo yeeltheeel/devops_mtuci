@@ -1,0 +1,101 @@
+\textbf{Цель работы}
+\begin{itemize}
+	\item познакомиться с методологией CI/CD; 
+	\item научиться работать с инструментом GitHub Actions. 
+\end{itemize}
+
+\textbf{Задачи:}
+\begin{enumerate}
+	\item изучить методические материалы к лабораторной работе; 
+	\item написать тесты для приложения на Python; 
+	\item написать пайплайн сборки, тестирования и загрузки образа приложения на Docker Hub. 
+\end{enumerate}
+
+% 4.3 Создание пайплайна
+% Создайте в корне проекта директорию .github/workflows, а в ней два файла:
+% 1. tests.yml, который будет запускаться при любом коммите для запуска unit-тестов tests ;
+% 2. build-and-delivery.yml, который будет запускаться только при пуше в ветку main для сборки образа и доставки его в репозиторий Docker Hub.
+
+% 4.5 Проверка пайплайна
+% После реализации тестов и создания рабочих процессов запушьте изменения в удалённый репозиторий в ветку dev . Перейдите на вкладку «Actions» и дождитесь завершения тестов.
+% При успешном завершении произведите слияние ветки dev в ветку main локально и запушьте изменения в удалённую ветку main . После тестирования должен запуститься процесс сборки и публикации образа. По его завершению на вашей странице Docker Hub должен появиться образ DOCKERHUB_USERNAME/my-app с тегом latest .
+% Теперь вы можете запустить контейнер Docker с использованием этого образа (тег latest используется по умолчанию):
+% 	$ docker run <DOCKERHUB_USERNAME>/my-app
+
+\section*{Выполнение задания}
+
+%cd devops-lab5
+%git remote set-url origin https://github.com/yeeltheeel/devops-mtuci-lab5
+%git checkout -b dev
+%mkdir .github/workflows
+%cp ../tests.yml ../build-and-delivery.yml .github/workflows
+%git add .github/workflows
+%git commit -m "added files"
+%git push --set-upstream origin dev
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 021110"}
+	\caption{Новый репозиторий с веткой dev}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-08 222438"}
+	\caption{Работа пайплайна в ветке dev}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 020939"}
+	\caption{Работа пайплайнов в ветке main}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 022419"}
+	\caption{Загруженный образ в Docker Hub}
+\end{figure}
+\FloatBarrier
+
+%docker pull ghcr.io/yeeltheeel/my-app:latest
+%docker run -p 8080:8080 ghcr.io/yeeltheeel/my-app
+%http://localhost:8080/docs
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 022218"}
+	\caption{Запущенный образ}
+\end{figure}
+\FloatBarrier
+
+\section*{Исходный код программы}
+
+%\lstinputlisting[style=py]{devops-lab5/tests/test_user.py}
+\lstinputlisting[style=py, linerange={1, 3-6, 8-21, 23-27, 29-32, 34-41, 43-50, 52-58}]{devops-lab5/tests/test_user.py}
+Листинг 1 -- Дополненные методы тестирования   
+
+\lstinputlisting[style=ymlcicd]{devops-lab5/.github/workflows/tests.yml}
+Листинг 2 -- Пайплайн тестирования
+
+%\lstinputlisting[style=ymlcicd]{devops-lab5/.github/workflows/build-and-delivery.yml}
+\lstinputlisting[style=ymlcicd, linerange={1-11, 16-18, 21-27, 29-32}]{devops-lab5/.github/workflows/build-and-delivery.yml}
+Листинг 3 -- Пайплайн сборки и загрузки образа приложения
+
+\section*{Заключение}
+
+В ходе выполнения лабораторной работы были решены следующие задачи:
+\begin{itemize}
+	\item проведено ознакомление с методологией CI/CD; 
+	\item получены знания о том, как работать с инструментом GitHub Actions. 
+\end{itemize}
+
+\section*{Контрольные вопросы}
+
+\begin{enumerate}
+	\item \textit{Как CI/CD помогает в разработке?} Помогает избежать ошибок и сбоев в коде, поддерживая непрерывный цикл разработки и обновления программного обеспечения. Поскольку CI/CD автоматизирует ручное вмешательство человека, время простоя сводится к минимуму, а релизы кода происходят быстрее, снижается человеческий фактор.
+	\item \textit{К какому этапу CI/CD относится сборка десктоп приложения под операционные системы Windows, MacOS и Linux для его дальнейшего тестирования?} ответ.
+	\item \textit{Что такое Continuous Delivery и Deploy?} Continuous Delivery (непрерывная доставка) автоматизирует выпуск проверенного кода в репозиторий после сборки и тестирования приложения на этапе CI. Deploy (непрерывное развертывание) -- заключительный этап конвейера CI/CD, является расширением непрерывной доставки и может означать автоматизацию выпуска изменений из репозитория в производство.
+\end{enumerate}

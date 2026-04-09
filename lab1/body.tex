@@ -1,0 +1,62 @@
+\textbf{Цели работы:}
+\begin{itemize}
+	\item изучить базовое устройство Linux;
+	\item научиться взаимодействовать с ОС Linux;
+	\item научиться писать bash-скрипты.
+\end{itemize}
+
+\textbf{Задачи:}
+\begin{enumerate}
+	\item изучить методические материалы к лабораторной работе; 
+	\item написать bash-скрипт для удаления файлов по заданному имени из указанной директории, а также предусмотреть флаг -p для удаления по шаблону. 
+\end{enumerate}
+
+\section*{Выполнение задания}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot (53)"}
+	\caption{Установленная ОС Ubuntu}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot (54)"}
+	\caption{Терминал}
+\end{figure}
+\FloatBarrier
+
+\clearpage
+
+\section*{Исходный код программы}
+% согласно стилю языка программирования
+% consolas, 10
+
+\lstinputlisting[style=bash]{deleteFiles.sh}
+%\lstinputlisting[style=bash, linerange={}]{}
+Листинг 1 -- bash-скрипт по заданию
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot From 2026-02-26 15-33-52"}
+	\caption{Вывод программы}
+\end{figure}
+\FloatBarrier
+
+\section*{Заключение}
+
+В ходе выполнения лабораторной работы были решены следующие задачи:
+\begin{itemize}
+	\item изучено базовое устройство Linux;
+	\item получены знания о том, как взаимодействовать с ОС Linux;
+	\item получены знания о том, как писать bash-скрипты.
+\end{itemize}
+
+\section*{Контрольные вопросы}
+
+\begin{enumerate}
+	\item \textit{Что такое Linux?} Компьютерная операционная система, разработанная на основе модели открытого исходного кода.
+	\item \textit{В чем отличие переменных окружения от переменных оболочки?} Операционная система передает все переменные окружения системным процессам и программам, выполняемым оболочкой, в то время как переменные оболочки доступны только внутри текущего экземпляра оболочки.
+	\item \textit{С помощью какой команды изменяются права доступа к файлу?} Командой chmod. % chmod u+rwx,o-wx file
+\end{enumerate}

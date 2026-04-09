@@ -1,0 +1,152 @@
+\textbf{Цели работы:}
+\begin{itemize}
+	\item познакомиться с технологией Docker и ее концепциями;
+	\item изучить основные команды Docker CLI;
+	\item изучить формат описания образов с помощью Dockerfile.
+\end{itemize}
+
+\textbf{Задачи:}
+\begin{enumerate}
+	\item изучить методические материалы к лабораторной работе;
+	\item развернуть контейнер nginx:
+	\begin{itemize}
+		\item с тегом alpine3.20;
+		\item с именем <имя пользователя>-my-nginx ;
+		\item доступный по порту 8000;
+		\item запущенный в фоновом режиме;
+	\end{itemize}
+	\item поcмотреть логи приложения;
+	\item проинспектировать контейнер и c помощью jq вывести:
+	\begin{itemize}
+		\item время, когда контейнер был создан;
+		\item версию nginx;
+		\item ip-адрес контейнера;
+	\end{itemize}
+	\item написать Dockerfile для приложения на Python и сбилдить образ;
+	\item написать Dockerfile для приложения на Java:
+	\begin{itemize}
+		\item без использования multi-stage сборки;
+		\item с использованием multi-stage сборки;
+		\item сравнить получившиеся образы.
+	\end{itemize}
+\end{enumerate}
+
+\section*{Выполнение задания}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 105758"}
+	\caption{Установленный Docker}
+\end{figure}
+\FloatBarrier
+%docker desktop start 
+%docker --version
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 110126"}
+	\caption{Запуск контейнера nginx}
+\end{figure}
+\FloatBarrier
+%docker pull nginx:alpine3.20
+%docker run --name yeel-my-nginx -p 8000:8000 -d nginx:alpine3.20
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 110148"}
+	\caption{Просмотр логов}
+\end{figure}
+\FloatBarrier
+%docker logs yeel-my-nginx
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 110209"}
+	\caption{Инспектирование контейнера}
+\end{figure}
+\FloatBarrier
+%docker inspect yeel-my-nginx | jq '.[].Created'
+%docker inspect yeel-my-nginx | jq '.[].NetworkSettings.Networks.bridge.IPAddress'
+%docker inspect yeel-my-nginx | jq '.[0].Config.Env[] | select(test(\"NGINX_VERSION\"))'
+%docker exec yeel-my-nginx nginx -v
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 110428"}
+	\caption{Приветственная страница nginx}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 110602"}
+	\caption{Сборка образа Python}
+\end{figure}
+\FloatBarrier
+%docker build . -t pyapp
+%docker run -p 8080:8080 -d -it pyapp
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 110638"}
+	\caption{Сборка образа Java без multi-stage}
+\end{figure}
+\FloatBarrier
+%docker build . -t javaapp:huge -f plain.Dockerfile 
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 110705"}
+	\caption{Сборка образа Java c multi-stage}
+\end{figure}
+\FloatBarrier
+%docker build . -t javaapp:slim -f multi-stage.Dockerfile 
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 111251"}
+	\caption{Сравнение образов}
+\end{figure}
+\FloatBarrier
+%docker ps -a
+%docker images -a
+
+%docker desktop stop
+\clearpage
+
+\section*{Исходный код программы}
+
+\lstinputlisting[style=dockerfile]{devops-lab3/python/Dockerfile}
+Листинг 1 -- Dockerfile для приложения на Python
+
+\lstinputlisting[style=dockerfile]{devops-lab3/java/plain.Dockerfile}
+Листинг 2 -- Dockerfile для приложения на Java без multi-stage сборки
+
+\lstinputlisting[style=dockerfile]{devops-lab3/java/multi-stage.Dockerfile}
+Листинг 3 -- Dockerfile для приложения на Java с multi-stage сборкой
+
+\section*{Заключение}
+
+В ходе выполнения лабораторной работы были решены следующие задачи:
+\begin{itemize}
+	\item проведено ознакомление с технологией Docker и ее концепциями;
+	\item изучены основные команды Docker CLI;
+	\item изучен формат описания образов с помощью Dockerfile.
+\end{itemize}
+
+\section*{Контрольные вопросы}
+
+\begin{enumerate}
+	\item \textit{Что такое Docker?} Контейнерная платформа программного обеспечения, созданная для разработки, отправки и запуска приложений с использованием контейнерных технологий..
+	\item \textit{Что такое образ?} Схема приложения, которая является основой контейнеров и выступает в роли шаблона, в соответствии с которым создаются контейнеры.
+	\item \textit{Что такое контейнер?} Набор изолированных от других процессов, которые создаются на основе образа и запускают само приложение.
+	\item \textit{На рисунке ниже продемонстрирован образ, в котором находится один файл main.py. По умолчанию программа выводит в терминал фразу "Hello, World!". Однако есть возможность изменить приветствие, передав в качестве аргумента слово, которое будет напечатано вместо "World". При втором запуске контейнера произошла ошибка. Укажите на причину ошибки и найдите способ ее устранения} 
+	\begin{center}
+		\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-09 104859"}
+	\end{center}
+	Ошибка происходит из-за особенностей обработки аргументов контейнером. Исправить ее можно:
+	\begin{enumerate}[label=\alph*.]
+		\item заменив CMD ["python", "main.py"] на CMD python main.py (shell-режим);
+		\item заменив CMD ["python", "main.py"] на ENTRYPOINT ["python", "main.py"] и CMD [] (exec-режим).
+	\end{enumerate}
+\end{enumerate}

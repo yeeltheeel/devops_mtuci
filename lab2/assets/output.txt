@@ -1,0 +1,305 @@
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>./lab2.bat
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>SET editor="C:/Program Files/Sublime Text/sublime_text.exe"
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>REM new repository
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>mkdir repo_new
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>cd repo_new
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git init
+Initialized empty Git repository in C:/Users/yekat/Documents/uni/mtuci/devops/lab2/assets/repo_new/.git/
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM user setup for commit
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git config --global user.name "yeel"
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git config --global user.email "evil.carmen666@gmail.com"
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM starting work
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>touch file.txt
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git add .
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+(use "git rm --cached <file>..." to unstage)
+new file:   file.txt
+
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM remove from add
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM git rm --cached <file>
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM empty directory
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>mkdir empty
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>cd empty
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new\empty>touch .gitkeep
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new\empty>cd ..
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+(use "git rm --cached <file>..." to unstage)
+new file:   file.txt
+
+Untracked files:
+(use "git add <file>..." to include in what will be committed)
+empty/
+
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git add .
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM commit
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git commit -m "first commit"
+[master (root-commit) e905bf3] first commit
+2 files changed, 0 insertions(+), 0 deletions(-)
+create mode 100644 empty/.gitkeep
+create mode 100644 file.txt
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM master
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>cd ..
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>mkdir repo_master
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>cd repo_master
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_master>git init
+Initialized empty Git repository in C:/Users/yekat/Documents/uni/mtuci/devops/lab2/assets/repo_master/.git/
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_master>cd ../repo_new
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git remote add origin "../repo_master"
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM wrong way
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git push --set-upstream origin master
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (4/4), 287 bytes | 287.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: error: refusing to update checked out branch: refs/heads/master
+remote: error: By default, updating the current branch in a non-bare repository
+remote: is denied, because it will make the index and work tree inconsistent
+remote: with what you pushed, and will require 'git reset --hard' to match
+remote: the work tree to HEAD.
+remote:
+remote: You can set the 'receive.denyCurrentBranch' configuration variable
+remote: to 'ignore' or 'warn' in the remote repository to allow pushing into
+remote: its current branch; however, this is not recommended unless you
+remote: arranged to update its work tree to match what you pushed in some
+remote: other way.
+remote:
+remote: To squelch this message and still keep the default behaviour, set
+remote: 'receive.denyCurrentBranch' configuration variable to 'refuse'.
+To ../repo_master
+! [remote rejected] master -> master (branch is currently checked out)
+error: failed to push some refs to '../repo_master'
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM correct way
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>cd ..
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>rm -rf repo_master
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>mkdir repo_master
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>cd repo_master
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_master>git init --bare
+Initialized empty Git repository in C:/Users/yekat/Documents/uni/mtuci/devops/lab2/assets/repo_master/
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_master>cd ../repo_new
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git push --set-upstream origin master
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (4/4), 287 bytes | 287.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To ../repo_master
+* [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>git push
+Everything up-to-date
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>REM root-commit
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_new>cd ..
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>mkdir repo_test
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>cd repo_test
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_test>git init
+Initialized empty Git repository in C:/Users/yekat/Documents/uni/mtuci/devops/lab2/assets/repo_test/.git/
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_test>touch rand.txt
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_test>git add .
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_test>git commit -m "aaa"
+[master (root-commit) ef67dba] aaa
+1 file changed, 0 insertions(+), 0 deletions(-)
+create mode 100644 rand.txt
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_test>git remote add origin " ../repo_master "
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_test>git push --set-upstream origin master
+fatal: ' ../repo_master ' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_test>cd ..
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>rm - rf repo_test
+rm: cannot remove '-': No such file or directory
+rm: cannot remove 'rf': No such file or directory
+rm: cannot remove 'repo_test': Is a directory
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>REM clone
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>git clone "./repo_master" "repo_cloned"
+Cloning into 'repo_cloned'...
+done.
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets>cd repo_cloned
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>REM conflict
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>"C:/Program Files/Sublime Text/sublime_text.exe" file.txt
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+(use "git add <file>..." to update what will be committed)
+(use "git restore <file>..." to discard changes in working directory)
+modified:   file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>REM roll back to last fixed version
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>REM git restore ...
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>REM auto add all unstaged changes to commit
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>REM git commit -a
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git add .
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git commit -m "second"
+[master 557211b] second
+1 file changed, 1 insertion(+)
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 267 bytes | 267.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To C:/Users/yekat/Documents/uni/mtuci/devops/lab2/assets/./repo_master
+e905bf3..557211b  master -> master
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>cd ../ repo_new
+The system cannot find the path specified.
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>"C:/Program Files/Sublime Text/sublime_text.exe" file.txt
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git add .
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git commit -m "other second"
+[master 764ccba] other second
+1 file changed, 1 insertion(+), 1 deletion(-)
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 274 bytes | 274.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To C:/Users/yekat/Documents/uni/mtuci/devops/lab2/assets/./repo_master
+557211b..764ccba  master -> master
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git pull
+Already up to date.
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>REM conflict resolution
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>"C:/Program Files/Sublime Text/sublime_text.exe" file.txt
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git add file.txt
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git commit -m "merged"
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git push
+Everything up-to-date
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>REM history
+
+C:\Users\yekat\Documents\uni\mtuci\devops\lab2\assets\repo_cloned>git log
+commit 764ccba3e5a2c1f505c554a711ac4bca3e76d1e4 (HEAD -> master, origin/master, origin/HEAD)
+Author: yeel <evil.carmen666@gmail.com>
+Date:   Thu Mar 26 17:12:30 2026 +0300
+
+other second
+
+commit 557211b6fcb300f8e922a81ed69673b82e892dda
+Author: yeel <evil.carmen666@gmail.com>
+Date:   Thu Mar 26 17:12:25 2026 +0300
+
+second
+
+commit e905bf3427cc79b3a44c8617eb35518dc0b504c5
+Author: yeel <evil.carmen666@gmail.com>
+Date:   Thu Mar 26 17:12:18 2026 +0300
+
+first commit

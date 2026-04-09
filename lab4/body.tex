@@ -1,0 +1,68 @@
+\textbf{Цели работы:}
+\begin{itemize}
+	\item  познакомиться с технологией Docker Compose;
+	\item  изучить основные команды CLI;
+	\item  изучить формат описания сервисов с помощью docker-compose.yml.
+\end{itemize}
+
+\textbf{Задачи:}
+\begin{enumerate}
+	\item изучить методические материалы к лабораторной работ;  
+	\item описать и развернуть три сервиса с помощью docker-compose.yml. 
+\end{enumerate}
+
+\section*{Выполнение задания}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-03-26 140911"}
+	\caption{Установленный Docker Compose}
+\end{figure}
+\FloatBarrier
+%docker compose version
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-03-26 162159"}
+	\caption{Поднятые сервисы}
+\end{figure}
+\FloatBarrier
+%docker compose ps
+
+%https://localhost
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-03-26 141048"}
+	\caption{Cтраница БД}
+\end{figure}
+\FloatBarrier
+
+%docker compose down -v
+
+\section*{Исходный код программы}
+
+\lstinputlisting[style=yml]{devops-lab4/docker-compose.yml}
+Листинг 1 -- docker-compose.yml для трех сервисов
+%docker compose up -d --build
+%docker compose logs
+
+\section*{Заключение}
+
+В ходе выполнения лабораторной работы были решены следующие задачи:
+\begin{itemize}
+	\item  проведено ознакомление с технологией Docker Compose;
+	\item  изучены основные команды CLI;
+	\item  изучен формат описания сервисов с помощью docker-compose.yml.
+\end{itemize}
+
+\section*{Контрольные вопросы}
+
+\begin{enumerate}
+	\item \textit{Что такое Docker Compose и для чего он используется?}  Инструмент для определения и запуска многоконтейнерных приложений. Он упрощает управление всем стеком приложений, позволяя легко манипулировать сервисами, сетями и томами в едином и понятном конфигурационном файле YAML, а затем создать и запустить все сервисы из файла конфигурации с помощью одной команды.
+	\item \textit{На рисунке ниже продемонстрирован docker-compose.yml, в котором описан один сервис db. При попытке смонтировать каталог postgres\_data внутрь контейнера для хранения записей базы данных происходит ошибка. Почему возникает ошибка и как её исправить?} 
+	\begin{center}
+		\includegraphics[width=0.6\linewidth]{"Screenshot 2026-03-26 135141"}
+	\end{center}
+	Ошибка монтирования тома, так как отсутствует объявление тома верхнего уровня. Исправляется добавлением\\volumes:\\\hspace*{2em}postgres\_data:\\\hspace*{4em}driver: local \\
+	вне services.
+\end{enumerate}
