@@ -23,14 +23,15 @@
 
 % 
 
-\lstdefinestyle{ymlcicd}{
-	language=bash,
+\lstdefinestyle{ansible}{
 	basicstyle=\ttfamily\footnotesize,
-	keywords={name, jobs, runs-on, runs, run, on, workflow_run, workflows, types, uses, with, steps, env, if, push, branches, permissions, needs},
-	keywords=[2]{true, false, completed, requested, in_progress}
+	keywords={name, hosts, state, tasks, yum, when, loop with, until, groups, block, become, become_user, ignore_errors, vars, vars_files, vars_prompt, handlers, notify, src, dest, remote_user, service, listen, become_method, enabled, roles},
+	keywords=[2]{true, false, True, False, yes, no, children},
 	keywordstyle=\color{blue},
+	keywordstyle=[2]\color{red},
 	stringstyle=\color{red},
 	commentstyle=\color{gray},
+	moredelim=[s][\color{blue}]{[}{]}, 
 	numbers=left,
 	numberstyle=\tiny,
 	stepnumber=1,
@@ -40,29 +41,9 @@
 	captionpos=b,
 	breaklines=true,
 	breakatwhitespace=true,
-	literate = {\$\#}{{{\$\#}}}2 {\$\# }{{{\$\# }}}2
+	literate = {\$\#}{{{\$\#}}}2 {\$\# }{{{\$\# }}}2,
 }
-\lstset{style=ymlcicd}
-
-\lstdefinestyle{py}{
-	language=Python,
-	basicstyle=\ttfamily\footnotesize,
-	keywordstyle=\color{blue},
-	stringstyle=\color{red},
-	commentstyle=\color{gray},
-	numbers=left,
-	numberstyle=\tiny,
-	stepnumber=1,
-	numbersep=5pt,
-	frame=single,
-	tabsize=4,
-	captionpos=b,
-	breaklines=true,
-	breakatwhitespace=true,
-	%escapeinside={'}{'},
-	extendedchars=true,
-}
-\lstset{style=py}
+\lstset{style=ansible}
 
 % 
 
@@ -106,6 +87,10 @@
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}}
 \DeclareCaptionLabelSeparator{dash}{~---~}
 \captionsetup{labelsep=dash}
+
+\addto\captionsrussian{\renewcommand{\lstlistingname}{Листинг}}
+\addto\captionsrussian{\renewcommand{\lstlistlistingname}{Список листингов}}
+\captionsetup[lstlisting]{labelsep=dash,justification=raggedright,singlelinecheck=false}
 
 \captionsetup[figure]{justification=centering,labelsep=dash}
 \captionsetup[table]{labelsep=dash,justification=raggedright,singlelinecheck=off}

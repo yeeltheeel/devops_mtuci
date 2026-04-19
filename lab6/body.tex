@@ -1,0 +1,121 @@
+\textbf{Цели работы:}
+\begin{itemize}
+	\item познакомиться с инструментом Ansible;
+	\item изучить формат описания конфигураций Ansible.
+\end{itemize}
+
+\textbf{Задачи:}
+\begin{enumerate}
+	\item изучить методические материалы к лабораторной работе;
+	\item подготовить окружение;
+	\item описать файл инвентаря с именем hosts, создав группы:
+	\begin{itemize}
+		\item staging\_serves, состоящий из двух хостов;
+		\item prod\_serves, состоящий из одного хоста;
+		\item all\_serves, объединяющий две предыдущие группы;
+	\end{itemize}
+	\item описать переменные для группы all\_serves;
+	\item проверить доступность серверов через ad-hoc команду;
+	\item написать Playbook для установки и запуска nginx.
+\end{enumerate}
+
+\section*{Выполнение задания}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot From 2026-04-20 00-57-49"}
+	\caption{Установленный Ansible}
+\end{figure}
+\FloatBarrier
+
+% cpu=1, ram=2048mb, rom>=5gb, adapter1.network_adapter=on, add gpt_partition=ext4='/'
+% name=yeel, server_name=node-1, username='elanskaya-e-d'
+% sudo apt update && sudo apt install opensh-server -y
+% sudo systemctl enable ssh && sudo systemctl status ssh.service
+% ip addr show
+% повторить для node-2 и node-3
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.3\linewidth]{"Screenshot (61)"}
+	\caption{Созданные Ubuntu Server ВМ}
+\end{figure}
+\FloatBarrier
+% yeel elanskayaed 1 % да, я не умею читать
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot 2026-04-19 234031"}
+	\caption{Параметры сервера}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot (62)"}
+	\caption{Проверка доступности хостов}
+\end{figure}
+\FloatBarrier
+% ansible all -m ping -i hosts -u elanskayaed --ask-pass
+% sudo apt install sshpass
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot (63)"}
+	\caption{Запуск плейбука}
+\end{figure}
+\FloatBarrier
+% ansible-playbook -i hosts nginx_install_and_run.yml -kK
+% ansible-playbook nginx_install_and_run.yml -u elanskayaed --ask-pass
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.6\linewidth]{"Screenshot (64)"}
+	\caption{Приветственная страница nginx}
+\end{figure}
+\FloatBarrier
+%\clearpage
+
+\section*{Исходный код программы}
+
+% ansible:
+% hosts
+% ansible.cfg
+% nginx_install_and_run.yml
+% group_vars/
+% 	all_serves.yml
+% roles/
+% 	nginx/
+% 		tasks/
+% 			main.yml
+% 		handlers/
+% 			main.yml
+
+\lstinputlisting[style=ansible, caption={Файл hosts}]{ansible/hosts}
+
+\lstinputlisting[style=ansible, caption={Файл ansible.cfg}]{ansible/ansible.cfg}
+
+\lstinputlisting[style=ansible, caption={Файл для переменных группы all\_serves}]{ansible/group_vars/all_serves.yml}
+
+\lstinputlisting[style=ansible, caption={Плейбук nginx\_install\_and\_run.yml}]{ansible/nginx_install_and_run.yml}
+
+\lstinputlisting[style=ansible, caption={Файл задачи для роли nginx}]{ansible/roles/nginx/tasks/main.yml}
+
+\lstinputlisting[style=ansible, caption={Файл обработчика для роли nginx}]{ansible/roles/nginx/handlers/main.yml}
+
+\section*{Заключение}
+
+В ходе выполнения лабораторной работы были решены следующие задачи:
+\begin{itemize}
+	\item проведено ознакомление с инструментом Ansible;
+	\item изучен формат описания конфигураций Ansible.
+\end{itemize}
+
+\section*{Контрольные вопросы}
+
+\begin{enumerate}
+	\item \textit{Что такое Ansible?} Система управления конфигурациями.
+	\item \textit{Что такое Playbook?} Повторяющаяся, многократно используемая, простая система управления конфигурацией и развертывания на нескольких машинах, которая хорошо подходит для развертывания сложных приложений.
+	\item \textit{Для чего нужны роли?} Роли позволяют автоматически загружать связанные переменные, файлы, задачи, обработчики и другие артефакты Ansible на основе известной структуры файлов. Сгруппировав содержимое по ролям, можно использовать их повторно и делиться ими с другими пользователями.
+	\item \textit{Что гарантирует идемпотентность в Ansible?} Плейбуки и роли.
+	% Идемпотентность -- свойство объекта или операции при повторном применении операции с одними и теми же параметрами давать один и тот же результат.
+\end{enumerate}
